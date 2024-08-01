@@ -1,8 +1,8 @@
-import React from 'react'
+import UsersList from "./UsersList"
 
 function Home() {
   return (
-    <h1 className="text-6xl">Welcome</h1>
+    <UsersList />
   )
 }
 
