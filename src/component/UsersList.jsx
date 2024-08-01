@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Loading from "./Loading"
 
 function UsersList() {
     const [users, setUsers] = useState([])
@@ -20,7 +21,7 @@ function UsersList() {
     }
 
     if (loading){
-        return <h3>Loading...</h3>
+        return <Loading />
     } else {
         return (
             <div className="text-white grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2">
