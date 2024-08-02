@@ -1,12 +1,19 @@
-import { useState, createContext } from "react"
+import { useReducer, createContext } from "react"
+import UserReducer from "../UserReducer"
 export const UserContext = createContext()
+
 const GITHUB_URL = import.meta.env.VITE_GITHUB_URL
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN
 
 function DataContext({children}) {
-    const [users, setUsers] = useState([])
-    const [loading, setLoading] = useState(true)
 
+    const initialState = {
+        users: [],
+        loading: true
+    }
+
+    const [state, dispatch] = useReducer(UserReducer, initialState)
+    
     const getUsers = async () => {
         const response = await fetch(`${GITHUB_URL}/users`, {
             headers: {
@@ -14,12 +21,14 @@ function DataContext({children}) {
             }
         })
         const data = await response.json()
-        setUsers(data)
-        setLoading(false)
+        dispatch({
+            type:'GET_USERS',
+            payload: data
+        })
     } 
 
     return (
-    <UserContext.Provider value = {{users, loading, getUsers}}>
+    <UserContext.Provider value = {{users: state.users, loading: state.loading, getUsers}}>
         {children}
     </UserContext.Provider>
   )
