@@ -1,25 +1,14 @@
-import { useEffect, useState } from "react"
+import { useEffect, useContext } from "react"
 import Loading from "./Loading"
 import User from "./User"
+import { UserContext } from "./DataContext"
 
 function UsersList() {
-    const [users, setUsers] = useState([])
-    const [loading, setLoading] = useState(true)
-
+    const {users, loading, getUsers} = useContext(UserContext)
     useEffect(()=>{
         getUsers()
     }, [])
 
-    const getUsers = async () => {
-        const response = await fetch(`${import.meta.env.VITE_GITHUB_URL}/users`, {
-            headers: {
-                Authorization: `token ${import.meta.env.VITE_GITHUB_TOKEN}`
-            }
-        })
-        const data = await response.json()
-        setUsers(data)
-        setLoading(false)
-    }
 
     if (loading){
         return <Loading />

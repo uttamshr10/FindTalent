@@ -5,10 +5,12 @@ import Home from "./component/Home"
 import About from "./component/About"
 import Contact from './component/Contact'
 import NotFound from "./component/NotFound"
+import DataContext from "./component/DataContext"
 
 
 function App(){
   return (
+    <DataContext>
     <Router>
       <div className="flex flex-col justify-between h-screen">
       <Navigation />
@@ -24,6 +26,7 @@ function App(){
 
       </div>
     </Router>
+    </DataContext>
     
   )
 }
