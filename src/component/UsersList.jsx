@@ -1,15 +1,11 @@
-import { useEffect, useContext } from "react"
+import { useContext } from "react"
 import Loading from "./Loading"
 import User from "./User"
 import { UserContext } from "./DataContext"
 
 function UsersList() {
-    const {users, loading, getUsers} = useContext(UserContext)
-    useEffect(()=>{
-        getUsers()
-    }, [])
-
-
+    const {users, loading} = useContext(UserContext)
+    
     if (loading){
         return <Loading />
     } else {

@@ -9,26 +9,39 @@ function DataContext({children}) {
 
     const initialState = {
         users: [],
-        loading: true
+        loading: false
     }
 
     const [state, dispatch] = useReducer(UserReducer, initialState)
+    const loading = () => dispatch({type: 'LOADING'})
     
-    const getUsers = async () => {
-        const response = await fetch(`${GITHUB_URL}/users`, {
+    // Search functionality
+    const usersSearch = async (text) => {
+        loading()
+        const parameter = new URLSearchParams({
+            q: text
+        })
+
+        const response = await fetch(`${GITHUB_URL}/search/users?${parameter}`, {
             headers: {
                 Authorization: `token ${GITHUB_TOKEN}`
             }
         })
-        const data = await response.json()
+        const { items } = await response.json()
         dispatch({
             type:'GET_USERS',
-            payload: data
+            payload: items
         })
-    } 
+    }
+
+    const reset = () =>{
+        return dispatch({
+            type: "RESET"
+        })
+    }
 
     return (
-    <UserContext.Provider value = {{users: state.users, loading: state.loading, getUsers}}>
+    <UserContext.Provider value = {{users: state.users, loading: state.loading, reset, usersSearch}}>
         {children}
     </UserContext.Provider>
   )
