@@ -8,6 +8,7 @@ import NotFound from "./component/NotFound"
 import UserProvider from "./component/context/UserContext"
 import AlertProvider from "./component/context/AlertContext"
 import Alert from "./component/Alert"
+import User from './component/User'
 
 function App(){
   return (
@@ -21,8 +22,10 @@ function App(){
             <Routes>
               <Route path="/" element = {<Home />} />
               <Route path="/about" element = {<About />} />
+              <Route path="/user/:login" element = {<User />} />
               <Route path="/contact" element = {<Contact />} />
               <Route path="/*" element = {<NotFound />} />
+              <Route path="/notfound" element = {<NotFound />} />
             </Routes>
           </main>
           <Footer />

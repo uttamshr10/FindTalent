@@ -9,6 +9,8 @@ function UserProvider({children}) {
 
     const initialState = {
         users: [],
+        user: {},
+        repos: [],
         loading: false
     }
 
@@ -34,6 +36,45 @@ function UserProvider({children}) {
         })
     }
 
+    // Get single user
+    const getUser = async (login) => {
+        loading()
+        
+        const response = await fetch(`${GITHUB_URL}/users/${login}`, {
+            headers: {
+                Authorization: `token ${GITHUB_TOKEN}`
+            }
+        })
+        if(response.status === 404){
+            window.location = '/notfound'
+        } else {
+            const data = await response.json()
+            dispatch({
+                type:'GET_USER',
+                payload: data
+            })
+        }
+    }
+    
+    // Get User Repos
+    const getRepos = async (login) => {
+        loading()
+        const parameter = new URLSearchParams({
+            sort: 'latest',
+            per_page: 10
+        })
+        const response = await fetch(`${GITHUB_URL}/users/${login}/repos?${parameter}`, {
+            headers: {
+                Authorization: `token ${GITHUB_TOKEN}`
+            }
+        })
+        const data = await response.json()
+        dispatch({
+            type:'GET_REPOS',
+            payload: data
+        })
+    }
+
     const reset = () =>{
         return dispatch({
             type: "RESET"
@@ -41,7 +82,7 @@ function UserProvider({children}) {
     }
 
     return (
-    <UserContext.Provider value = {{users: state.users, loading: state.loading, reset, usersSearch}}>
+    <UserContext.Provider value = {{user: state.user, users: state.users, repos: state.repos, loading: state.loading, getUser, getRepos, reset, usersSearch}}>
         {children}
     </UserContext.Provider>
   )
