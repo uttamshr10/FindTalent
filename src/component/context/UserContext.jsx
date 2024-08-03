@@ -1,11 +1,11 @@
 import { useReducer, createContext } from "react"
-import UserReducer from "../UserReducer"
+import UserReducer from "./UserReducer"
 export const UserContext = createContext()
 
 const GITHUB_URL = import.meta.env.VITE_GITHUB_URL
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN
 
-function DataContext({children}) {
+function UserProvider({children}) {
 
     const initialState = {
         users: [],
@@ -47,4 +47,4 @@ function DataContext({children}) {
   )
 }
 
-export default DataContext
+export default UserProvider

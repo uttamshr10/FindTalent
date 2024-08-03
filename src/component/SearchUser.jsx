@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { UserContext } from "./DataContext";
+import { UserContext } from "./context/UserContext";
 import { AlertContext } from './context/AlertContext'
 
 function SearchUser() {

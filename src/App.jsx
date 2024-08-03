@@ -5,13 +5,13 @@ import Home from "./component/Home"
 import About from "./component/About"
 import Contact from './component/Contact'
 import NotFound from "./component/NotFound"
-import DataContext from "./component/DataContext"
+import UserProvider from "./component/context/UserContext"
 import AlertProvider from "./component/context/AlertContext"
 import Alert from "./component/Alert"
 
 function App(){
   return (
-    <DataContext>
+    <UserProvider>
       <AlertProvider>
         <Router>
           <div className="flex flex-col justify-between h-screen">
@@ -29,7 +29,7 @@ function App(){
           </div>
         </Router>
       </AlertProvider>
-    </DataContext>
+    </UserProvider>
     
   )
 }
