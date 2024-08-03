@@ -6,26 +6,29 @@ import About from "./component/About"
 import Contact from './component/Contact'
 import NotFound from "./component/NotFound"
 import DataContext from "./component/DataContext"
-
+import AlertProvider from "./component/context/AlertContext"
+import Alert from "./component/Alert"
 
 function App(){
   return (
     <DataContext>
-    <Router>
-      <div className="flex flex-col justify-between h-screen">
-      <Navigation />
-      <main className="container mx-auto px-3 pb-12">
-        <Routes>
-          <Route path="/" element = {<Home />} />
-          <Route path="/about" element = {<About />} />
-          <Route path="/contact" element = {<Contact />} />
-          <Route path="/*" element = {<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
-
-      </div>
-    </Router>
+      <AlertProvider>
+        <Router>
+          <div className="flex flex-col justify-between h-screen">
+          <Navigation />
+          <main className="container mx-auto px-3 pb-12">
+            <Alert />
+            <Routes>
+              <Route path="/" element = {<Home />} />
+              <Route path="/about" element = {<About />} />
+              <Route path="/contact" element = {<Contact />} />
+              <Route path="/*" element = {<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+          </div>
+        </Router>
+      </AlertProvider>
     </DataContext>
     
   )

@@ -1,14 +1,16 @@
 import { useState, useContext } from "react"
 import { UserContext } from "./DataContext";
+import { AlertContext } from './context/AlertContext'
 
 function SearchUser() {
   const [text, setText] = useState("")
   const {usersSearch, reset} = useContext(UserContext)
+  const {setAlert} = useContext(AlertContext)
   
   const handleSubmit = (e) => {
     e.preventDefault()
     if(text === ''){
-        alert("Please enter some value")
+        setAlert("Please enter username", 'error')
     } else {
         usersSearch(text)
         setText('')
