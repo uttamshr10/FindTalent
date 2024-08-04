@@ -1,12 +1,13 @@
-import { useReducer, createContext } from "react"
+import { useReducer, createContext, useContext } from "react"
 import UserReducer from "./UserReducer"
+import { AlertContext } from "./AlertContext"
 export const UserContext = createContext()
 
 const GITHUB_URL = import.meta.env.VITE_GITHUB_URL
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN
 
 function UserProvider({children}) {
-
+    const {setAlert} = useContext(AlertContext)
     const initialState = {
         users: [],
         user: {},
@@ -30,6 +31,9 @@ function UserProvider({children}) {
             }
         })
         const { items } = await response.json()
+        if (items.length === 0){
+            setAlert("Username not found.", 'error')
+        }
         dispatch({
             type:'GET_USERS',
             payload: items

@@ -4,13 +4,13 @@ import { AlertContext } from './context/AlertContext'
 
 function SearchUser() {
   const [text, setText] = useState("")
-  const {usersSearch, reset} = useContext(UserContext)
+  const {usersSearch, reset, users} = useContext(UserContext)
   const {setAlert} = useContext(AlertContext)
   
   const handleSubmit = (e) => {
     e.preventDefault()
     if(text === ''){
-        setAlert("Please enter username", 'error')
+        setAlert("Please enter username.", 'error')
     } else {
         usersSearch(text)
         setText('')
@@ -23,7 +23,7 @@ function SearchUser() {
             <form onSubmit={handleSubmit}>
                 <div className="form-control">
                     <div className="relative">
-                        <input type="text" className="w-full pr-40 bg-gray-200 input input-lg text-black" placeholder="Search" value = {text} onChange={e=> setText(e.target.value)} />
+                        <input type="text" className="w-full pr-40 bg-gray-200 input input-lg text-black" placeholder="Enter username" value = {text} onChange={e=> setText(e.target.value)} />
                         <button className="absolute top-0 right-0 rounded-l-none w-36 btn btn-lg" type="submit">
                             Show
                         </button>
@@ -31,9 +31,11 @@ function SearchUser() {
                 </div>
             </form>
         </div>
+        {users.length > 0 && (
         <div>
             <button onClick={reset} className="btn btn-ghost btn-lg">Clear</button>
         </div>
+        )}
     </div>
   )
 }

@@ -12,8 +12,8 @@ import User from './component/User'
 
 function App(){
   return (
+  <AlertProvider>
     <UserProvider>
-      <AlertProvider>
         <Router>
           <div className="flex flex-col justify-between h-screen">
           <Navigation />
@@ -31,8 +31,8 @@ function App(){
           <Footer />
           </div>
         </Router>
+        </UserProvider>
       </AlertProvider>
-    </UserProvider>
     
   )
 }
