@@ -32,7 +32,7 @@ npm install
  ```
 
 
-7. Open your web browser and visit `http://localhost:3000/` to access the URL GitHubLookUp application.
+7. Open your web browser and visit `http://localhost:5173/` to access the URL GitHubLookUp application.
 
 ## Usage
 
