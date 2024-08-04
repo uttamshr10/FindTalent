@@ -40,16 +40,20 @@ npm install
 2. Click on the show button to fetch and display the user's profile and their latest repositories.
 
 <p align="center"><b>Home Page</b></p>
-![GitHubLookUp](https://github.com/uttamshr10/GitHubLookup/blob/master/src/assets/home.png)
+
+![Hello](src/assets/user.png)
 
 <p align="center"><b>Search User</b></p>
-![User](https://github.com/uttamshr10/GitHubLookup/blob/master/src/assets/user.png)
+
+![User](src/assets/home.png)
 
 <p align="center"><b>User Profile</b></p>
-![UserProfile](https://github.com/uttamshr10/GitHubLookup/blob/master/src/assets/profile.png)
+
+![UserProfile](src/assets/profile.png)
 
 <p align="center"><b>Latest Repos</b></p>
-![Repositories](https://github.com/uttamshr/GitHubLookup/blob/master/src/assets/repos.png)
+
+![Repositories](src/assets/repos.png)
 
 # Author
 ## Uttam Shrestha
